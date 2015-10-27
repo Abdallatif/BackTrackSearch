@@ -8,9 +8,14 @@ int main()
 {
 
 
+	    printf("hello");
 		Formula *f = (Formula *)malloc(sizeof(Formula));
-		generateFullRandomFormula(f , 20 , 20);
+		printf("hello");
+		importDimacs("cnf.txt" , f);
+		printf("hello");
 		printDimacs(*f);
+		printf("hello");
+
 
 
     return 0;

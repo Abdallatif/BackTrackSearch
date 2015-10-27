@@ -1,5 +1,6 @@
 #ifndef SOLVING_07_02_H
 #define SOLVING_07_02_H
+#include <stdio.h>
 #include "vecInt.h"
 #include "Interpretation.h"
 
@@ -47,6 +48,24 @@ void createClause(Formula f,int clauseNumber);
  * @param Literal l
  */
 void addLiteralInClause(Formula f,int clauseNumber, Literal l);
+
+
+/*
+ * @param name of file
+ * @param pointer to formula
+ *
+ * this function read formula and store it in a formula data structure
+ */
+void importDimacs(char *name,Formula *formula);
+
+/**
+ * Print in a DIMACS format a formula
+ * @param f the formula to print
+ */
+void printDimacs(Formula f);
+
+int extractWord(FILE *f,char *buffer) ;
+int str2int(char *str,int *value) ;
 
 
 #endif

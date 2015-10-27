@@ -53,11 +53,6 @@ void generateFullRandomFormula(Formula *f,int nbVars,int nbClauses);
 void generate3RandomFormula(Formula *f,int nbVars,int nbClauses);
 
 
-/**
- * Print in a DIMACS format a formula
- * @param f the formula to print
- */
 
-void printDimacs(Formula f);
 #endif
 

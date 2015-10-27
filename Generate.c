@@ -65,23 +65,6 @@ void generate3RandomFormula(Formula *f,int nbVars,int nbClauses)
 
 }
 
-/**
- * Print in a DIMACS format a formula
- * @param f the formula to print
- */
-
-void printDimacs(Formula f)
-{
-	int i , j ;
-	for(i = 0; i<f.nbClauses ; i++)
-	{
-		for ( j = 0 ; j < f.clauses[i].size ; j++)
-			printf("%d ", f.clauses[i].datas[j]);
-		printf("0\n");
-
-   }
-
-}
 
 
 
