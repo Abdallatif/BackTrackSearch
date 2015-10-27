@@ -8,13 +8,9 @@ int main()
 {
 
 
-	    printf("hello");
 		Formula *f = (Formula *)malloc(sizeof(Formula));
-		printf("hello");
 		importDimacs("cnf.txt" , f);
-		printf("hello");
 		printDimacs(*f);
-		printf("hello");
 
 
 
