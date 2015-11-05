@@ -1,0 +1,7 @@
+c   #vars: 625   #clauses: 76775   #literals: 201350
+c 
+
+p cnf 3 3 
+1 2 0
+-1 2 0
+1 -2 0
