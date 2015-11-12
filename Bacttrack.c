@@ -1,5 +1,14 @@
 #include "Backtrack.h"
 
+// This is a special function to check the sat when changing a literal in an interpretation
+/*int formulaStatus(Formula f, Interpretation I, Literal l, vecInt *vec)
+{
+    for (i=0;i<f.nbClauses;i++)
+	{
+	    if (()&&(f.clauseStatus[i]==TRUE)) continue;
+	}
+}*/
+
 int backtrackR(Formula F, Interpretation I, int i)
 {
     if (i>=F.nbVariables) return FALSE;

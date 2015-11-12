@@ -11,6 +11,8 @@ typedef struct {
   int nbClauses;
   int nbVariables;
   Clause* clauses;
+  int[] clauseFreeVars;
+  int[] clauseStatus;
 } Formula;
 
 

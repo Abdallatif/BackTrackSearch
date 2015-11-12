@@ -1,0 +1,28 @@
+# depslib dependency file v1.0
+1447319877 source:d:\ibn sina school\backtracksearch\bacttrack.c
+	"Backtrack.h"
+
+1447319877 d:\ibn sina school\backtracksearch\backtrack.h
+	<stdio.h>
+	"vecInt.h"
+	"Interpretation.h"
+	"Sat.h"
+	"Formula.h"
+
+1447319877 d:\ibn sina school\backtracksearch\vecint.h
+
+1447319877 d:\ibn sina school\backtracksearch\interpretation.h
+	"vecInt.h"
+
+1447319877 d:\ibn sina school\backtracksearch\sat.h
+	"vecInt.h"
+	"Interpretation.h"
+	"Sat.h"
+	"Formula.h"
+	<stdio.h>
+
+1447319877 d:\ibn sina school\backtracksearch\formula.h
+	<stdio.h>
+	"vecInt.h"
+	"Interpretation.h"
+
