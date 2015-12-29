@@ -25,6 +25,12 @@ typedef int Literal;
  */
 Variable getVariable(Literal l);
 
+/*******************************************************
+ * return the index of a literal
+ * @param l the literal
+ */
+Variable getIndexLiteral(Literal l);
+
 
 /*******************************************************
  * Create memory space for an interpretation I with n variables

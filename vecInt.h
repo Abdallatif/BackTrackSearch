@@ -2,7 +2,7 @@
 #define VECINT_H
 
 #define GROWFACTOR 2
-#define VERBOSE 0
+#define VERBOSE 1
 
 typedef struct {
   int size;         // The current size of the array

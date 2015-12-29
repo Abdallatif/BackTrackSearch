@@ -10,8 +10,6 @@ int main()
 		Formula *f = (Formula *)malloc(sizeof(Formula));
         importDimacs("cnf.txt" , f);
         printf("<<%d>>",backtrack(*f));
-
-
     return 0;
 }
 

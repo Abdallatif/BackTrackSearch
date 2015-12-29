@@ -16,11 +16,15 @@ void createFormula(Formula *f,int nbClauses,int nbVariables) {
    f->nbClauses = nbClauses;
    f->nbVariables = nbVariables;
    f->clauses = (Clause*) malloc(sizeof(Clause)*nbClauses);
-   f->nbFreeVars = calloc(nbClauses,sizeof(int));
+   f->occ = (Clause*) malloc(sizeof(Clause)*nbVariables*2);
+   f->clauseFreeVars = calloc(nbClauses,sizeof(int));
    f->clauseStatus = calloc(nbClauses,sizeof(int));
    for(int i = 0;i<nbClauses;i++) {
      createClause(*f,i);
-     f->caluseStatus[i]=UNDEF;
+     f->clauseStatus[i]=UNDEF;
+   }
+   for(int i = 0;i<nbVariables*2;i++) {
+     createEmptyVec(DEFAULTSIZE,&(f->occ[i]));
    }
 }
 
@@ -51,10 +55,9 @@ void createClause(Formula f,int clauseNumber) {
 void addLiteralInClause(Formula f,int clauseNumber, Literal l) {
     assert(clauseNumber < f.nbClauses);
     addLast(&(f.clauses[clauseNumber]),l);
-    f->nbFreeVars[clauseNumber]+=1;
+    addLast(&(f.occ[getIndexLiteral(l)]),clauseNumber);
+    f.clauseFreeVars[clauseNumber]+=1;
 }
-
-
 
 //--------------------------------------------------------------------
 // Function for  read a DIMACS formula

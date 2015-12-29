@@ -30,10 +30,39 @@
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
+			<Add option="-std=c99" />
 		</Compiler>
+		<Unit filename="Backtrack.h" />
+		<Unit filename="Bacttrack.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Formula.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Formula.h" />
+		<Unit filename="Generate.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Generate.h" />
+		<Unit filename="Interpretation.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Interpretation.h" />
+		<Unit filename="Sat.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Sat.h" />
+		<Unit filename="VecInt.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="stack.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="stack.h" />
+		<Unit filename="vecInt.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />

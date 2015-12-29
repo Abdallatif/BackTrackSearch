@@ -12,6 +12,12 @@
 Variable getVariable(Literal l) {
   return l>0 ? l  : -1 * l;
 }
+
+Variable getIndexLiteral(Literal l) {
+    if (l>0)
+        return (l-1)*2;
+    return ((-1*l-1)*2)+1;
+}
 /*******************************************************
  * Create memory space for an interpretation I with n variables
  * @param I the interpretation
