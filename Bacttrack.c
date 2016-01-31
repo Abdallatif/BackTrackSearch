@@ -39,15 +39,40 @@ int formulaStatus(Formula f, Interpretation I, Variable v)
     return status;
 }
 
-int chooseVar(int i){
-    return i;
+int chooseVar(Formula F, Interpretation I ){
+    /* intializ H function */
+    int H[I.size] ;
+    int i;
+    for ( i=0 ; i < I.size;i++)
+        H[i]=0;
+
+    /* Find  the clause that have minmum free varible */
+    int temp = 0 , minfree = 10000000, index=0 ;
+    for (temp=0; temp < F.clauses->size ; temp++)
+    {
+        if ( F.clauseFreeVars[temp] < minfree && F.clauseFreeVars[temp] != 0 && F.clauseFreeVars[temp] != 1)
+        {
+            minfree=F.clauseFreeVars[temp];
+            index=temp;
+        }
+    }
+    /* Find the varible that is undef */
+    i=0;
+    for ( temp= F.clauses->datas[i] ;;temp=F.clauses->datas[++i])
+    {
+        if (I.datas[i] == UNDEF)
+            return i ;
+    }
+
+    return 0 ;
 }
+
 
 // dl -> ddecision level
 int backtrackR(Formula F, Interpretation I, int dl)
 {
     //assert(dl<F.nbVariables);
-    Variable v = chooseVar(dl);
+    Variable v = chooseVar(F, I);
     if (v>=F.nbVariables) return FALSE;
     assignVariable(I, v, FALSE);
     maintainFV(F, v, -1);
