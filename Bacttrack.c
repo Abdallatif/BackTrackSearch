@@ -39,20 +39,27 @@ int formulaStatus(Formula f, Interpretation I, Variable v)
     return status;
 }
 
-int backtrackR(Formula F, Interpretation I, int i)
+int chooseVar(int i){
+    return i;
+}
+
+// dl -> ddecision level
+int backtrackR(Formula F, Interpretation I, int dl)
 {
-    if (i>=F.nbVariables) return FALSE;
-    assignVariable(I, i, FALSE);
-    int status=formulaStatus(F, I, i);
-    if (status==UNDEF) status=backtrackR(F, I, i+1);
+    //assert(dl<F.nbVariables);
+    Variable v = chooseVar(dl);
+    if (v>=F.nbVariables) return FALSE;
+    assignVariable(I, v, FALSE);
+    int status=formulaStatus(F, I, v);
+    if (status==UNDEF) status=backtrackR(F, I, dl+1);
     if (status==TRUE) return status;
     // Status = false << conflict
-    assignVariable(I, i, TRUE);
-    status=formulaStatus(F, I, i);
-    if (status==UNDEF) status=backtrackR(F, I, i+1);
+    assignVariable(I, v, TRUE);
+    status=formulaStatus(F, I, v);
+    if (status==UNDEF) status=backtrackR(F, I, dl+1);
     if (status==TRUE) return status;
     // Conflict
-    assignVariable(I, i, UNDEF);
+    assignVariable(I, v, UNDEF);
     return FALSE;
 }
 

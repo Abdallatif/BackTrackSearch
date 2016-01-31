@@ -12,4 +12,3 @@ int main()
         printf("<<%d>>",backtrack(*f));
     return 0;
 }
-
