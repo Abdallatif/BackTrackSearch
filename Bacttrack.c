@@ -9,7 +9,7 @@ void checkClause(Formula f, Clause c, Interpretation I, int clauseIndex)
             flag=TRUE;
         else if(getValueLiteral(I,c.datas[i])==UNDEF)
             if (flag!=TRUE) flag = UNDEF;
-    f.clauseStatus[clauseIndex]=flag;
+    f.clauseStatus[clauseIndex]= flag ;
 }
 
 // This is a special function to check the sat when changing a literal in an interpretation
@@ -50,6 +50,7 @@ int backtrackR(Formula F, Interpretation I, int dl)
     Variable v = chooseVar(dl);
     if (v>=F.nbVariables) return FALSE;
     assignVariable(I, v, FALSE);
+    maintainFV(F, v, -1);
     int status=formulaStatus(F, I, v);
     if (status==UNDEF) status=backtrackR(F, I, dl+1);
     if (status==TRUE) return status;
@@ -60,6 +61,7 @@ int backtrackR(Formula F, Interpretation I, int dl)
     if (status==TRUE) return status;
     // Conflict
     assignVariable(I, v, UNDEF);
+    maintainFV(F, v, 1);
     return FALSE;
 }
 

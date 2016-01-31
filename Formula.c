@@ -59,6 +59,16 @@ void addLiteralInClause(Formula f,int clauseNumber, Literal l) {
     f.clauseFreeVars[clauseNumber]+=1;
 }
 
+/// maintain free variable in the formula after changing variable
+void maintainFV(Formula f, Variable v, int increament) {
+    int var=(v-1)*2;
+    for (int i=0; i<f.occ[var].size; i++)
+        f.clauseFreeVars[f.occ[var].datas[i]]+=increament;
+    var++;
+    for (int i=0; i<f.occ[var].size; i++)
+        f.clauseFreeVars[f.occ[var].datas[i]]+=increament;
+}
+
 //--------------------------------------------------------------------
 // Function for  read a DIMACS formula
 void importDimacs(char *name,Formula *formula) {

@@ -2,7 +2,7 @@
 1454250419 source:d:\ibn sina school\backtracksearch\bacttrack.c
 	"Backtrack.h"
 
-1447319877 d:\ibn sina school\backtracksearch\backtrack.h
+1454253354 d:\ibn sina school\backtracksearch\backtrack.h
 	<stdio.h>
 	"vecInt.h"
 	"Interpretation.h"
@@ -21,7 +21,7 @@
 	"Formula.h"
 	<stdio.h>
 
-1450613004 d:\ibn sina school\backtracksearch\formula.h
+1454253403 d:\ibn sina school\backtracksearch\formula.h
 	<stdio.h>
 	"vecInt.h"
 	"Interpretation.h"
@@ -47,7 +47,7 @@
 	<stdlib.h>
 	<stdio.h>
 
-1453376252 source:d:\ibn sina school\backtracksearch\main.c
+1454251117 source:d:\ibn sina school\backtracksearch\main.c
 	<stdio.h>
 	<stdlib.h>
 	"Interpretation.h"
@@ -62,7 +62,7 @@
 	<assert.h>
 	"vecInt.h"
 
-1450613036 source:d:\ibn sina school\backtracksearch\formula.c
+1454252930 source:d:\ibn sina school\backtracksearch\formula.c
 	"vecInt.h"
 	"Interpretation.h"
 	"Formula.h"

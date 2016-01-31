@@ -51,6 +51,8 @@ void createClause(Formula f,int clauseNumber);
  * @param Literal l
  */
 void addLiteralInClause(Formula f,int clauseNumber, Literal l);
+/// maintain free variable in the formula after changing variable
+void maintainFV(Formula f, Variable v, int increament);
 
 
 /*
