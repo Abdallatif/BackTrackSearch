@@ -6,6 +6,7 @@ stack createEmptyStack()
     stack s;
     s.header=malloc(sizeof(struct stackNode));
     s.header->dlvl=-1;
+    s.header->v=0;
     s.header->next=NULL;
     return s;
 }
