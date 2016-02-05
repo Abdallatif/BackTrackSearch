@@ -52,7 +52,6 @@ int chooseVar(Formula F, Interpretation I ){
             index=temp;
         }
     }
-    printf("<c<%d>", index);
     /* Find the varible that is undef */
     for (int i=0; i<F.clauses[index].size; i++)
     {
@@ -75,7 +74,6 @@ int propagate(Formula F, Interpretation I, int dl) {
                     int v=getVariable(F.clauses[i].datas[j]);
                     int value=(F.clauses[i].datas[j]>0)*2-1;
                     assignVariable(I, v, value);
-                    printf("(%d %d) ", v, value);
                     maintainFV(F, v, -1);
                     push(s, v, dl);
                 }
@@ -97,7 +95,6 @@ int backtrackR(Formula F, Interpretation I, int dl)
 {
     //assert(dl<F.nbVariables);
     Variable v = chooseVar(F, I);
-    printf("\n<%d> ", v);
     if (v>=F.nbVariables || v<=0) return FALSE;
     assignVariable(I, v, FALSE);
     maintainFV(F, v, -1);
@@ -126,6 +123,5 @@ int backtrack(Formula F)
     createAndInitializeInterpretation(&I, F.nbVariables);
     s=createEmptyStack();
     int status = backtrackR(F, I, 1);
-    display(I);
     return status;
 }
