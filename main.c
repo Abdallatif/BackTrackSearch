@@ -8,10 +8,10 @@
 int main()
 {
 		Formula *f = (Formula *)malloc(sizeof(Formula));
-        importDimacs("cnf.txt" , f);
+        importDimacs("sat7-10.txt" , f);
 
         printf("<<%d>>",backtrack(*f));
-        for (int i=0; i<f->nbClauses; i++)
-            printf("<%d>", f->clauseFreeVars[i]);
+        /*for (int i=0; i<f->nbClauses; i++)
+            printf("<%d>", f->clauseFreeVars[i]);*/
     return 0;
 }

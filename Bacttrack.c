@@ -43,20 +43,21 @@ int formulaStatus(Formula f, Interpretation I, Variable v)
 
 int chooseVar(Formula F, Interpretation I ){
     /* Find  the clause that have minmum free varible */
-    int temp = 0, minfree = F.clauseFreeVars[0] , index=0 ;
+    int temp = 0, minfree = 100000000 , index=0 ;
     for (temp=0; temp< F.nbClauses ; temp++)
     {
-        if ( F.clauseFreeVars[temp] < minfree && F.clauseFreeVars[temp] != 0 && F.clauseFreeVars[temp] != 1)
+        if (F.clauseStatus[temp]!=TRUE && F.clauseFreeVars[temp] < minfree && F.clauseFreeVars[temp] != 0 && F.clauseFreeVars[temp] != 1)
         {
             minfree=F.clauseFreeVars[temp];
             index=temp;
         }
     }
+    printf("<c<%d>", index);
     /* Find the varible that is undef */
     for (int i=0; i<F.clauses[index].size; i++)
     {
         if (I.datas[getVariable(F.clauses[index].datas[i])] == UNDEF)
-            return F.clauses[index].datas[i];
+            return getVariable(F.clauses[index].datas[i]);
     }
 
     return 0 ;
@@ -64,20 +65,31 @@ int chooseVar(Formula F, Interpretation I ){
 
 /// this function try to propagate the variables on unit clauses
 /// and if it found an empty clause it return false
-int propagate(Formula f, Interpretation I, int dl) {
-    for (int i=0; i<f.nbClauses; i++)
+int propagate(Formula F, Interpretation I, int dl) {
+    for (int i=0; i<F.nbClauses; i++)
         if (F.clauseFreeVars[i]==0)
             return 0;
-        else if (F.clauseFreeVars[i]==1)
+        else if (F.clauseFreeVars[i]==1&&F.clauseStatus[i]!=TRUE)
             for (int j=0; j<F.clauses[i].size; j++)
                 if (I.datas[getVariable(F.clauses[i].datas[j])] == UNDEF){
-                    v=getVariable(F.clauses[i].datas[j]);
-                    value=F.clauses[i].datas[j]*2-1;
+                    int v=getVariable(F.clauses[i].datas[j]);
+                    int value=(F.clauses[i].datas[j]>0)*2-1;
                     assignVariable(I, v, value);
+                    printf("(%d %d) ", v, value);
                     maintainFV(F, v, -1);
                     push(s, v, dl);
                 }
     return 1;
+}
+
+void popout(Formula F, Interpretation I, int dl) {
+    while (getTop(s) >= dl) {
+        int v=pop(s);
+        //printf("(%d,%d,%d)", v, dl, I.datas[v]);
+
+        assignVariable(I, v, UNDEF);
+        maintainFV(F, v, 1);
+    }
 }
 
 // dl -> ddecision level
@@ -85,7 +97,7 @@ int backtrackR(Formula F, Interpretation I, int dl)
 {
     //assert(dl<F.nbVariables);
     Variable v = chooseVar(F, I);
-    printf("%d", v);
+    printf("\n<%d> ", v);
     if (v>=F.nbVariables || v<=0) return FALSE;
     assignVariable(I, v, FALSE);
     maintainFV(F, v, -1);
@@ -94,16 +106,17 @@ int backtrackR(Formula F, Interpretation I, int dl)
     if (status==UNDEF) status=backtrackR(F, I, dl+1);
     if (status==TRUE) return status;
     // Status = false << conflict
-    /// CheckOut propagations
+    popout(F, I, dl);
+
     assignVariable(I, v, TRUE);
+    propagate(F, I, dl);
     status=formulaStatus(F, I, v);
     if (status==UNDEF) status=backtrackR(F, I, dl+1);
     if (status==TRUE) return status;
     // Conflict
-    propagate(F, I, dl);
     assignVariable(I, v, UNDEF);
     maintainFV(F, v, 1);
-    /// CheckOut propagations
+    popout(F, I, dl);
     return FALSE;
 }
 

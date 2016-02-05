@@ -33,5 +33,7 @@ int pop(stack s)
 // get the decision level of the top variable in the stack
 int getTop(stack s)
 {
+    if (s.header->next==NULL)
+        return -1;
     return s.header->next->dlvl;
 }
